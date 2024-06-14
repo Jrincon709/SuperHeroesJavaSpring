@@ -19,5 +19,5 @@ public class WebConfig {
                         .allowedHeaders("Content-Type", "Authorization");
             }
         };
-    }
-}
+    }}
+

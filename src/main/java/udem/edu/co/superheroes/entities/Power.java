@@ -8,6 +8,8 @@ import lombok.Setter;
 
 import java.util.List;
 
+@Getter
+@Setter
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,12 +24,12 @@ public class Power {
     @OneToMany(mappedBy = "power", cascade = CascadeType.ALL)
     private List<SuperheroPower> superheroPowers;
 
-    public int getId() {
+    public int getIdPower() {
         return idPower;
     }
 
-    public void setId(int id) {
-        this.idPower = id;
+    public void setIdPower(int idPower) {
+        this.idPower = idPower;
     }
 
     public String getName() {

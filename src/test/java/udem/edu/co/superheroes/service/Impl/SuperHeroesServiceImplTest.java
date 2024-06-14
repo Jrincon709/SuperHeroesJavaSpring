@@ -7,8 +7,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import udem.edu.co.superheroes.entities.SuperHeroes;
-import udem.edu.co.superheroes.repositorio.SuperHeroesRepository;
+import udem.edu.co.superheroes.entities.Superhero;
+import udem.edu.co.superheroes.repositorio.SuperheroRepository;
 
 
 import java.util.Arrays;
@@ -24,7 +24,7 @@ import static org.mockito.Mockito.*;
 public class SuperHeroesServiceImplTest {
 
     @Mock
-    private SuperHeroesRepository superHeroesRepository;
+    private SuperheroRepository superHeroesRepository;
 
     @InjectMocks
     private SuperHeroesServiceImpl superHeroesService;
@@ -32,7 +32,7 @@ public class SuperHeroesServiceImplTest {
 
     @BeforeEach
     void setUp() {
-        SuperHeroes superHeroes = new SuperHeroes();
+        Superhero superHeroes = new Superhero();
     }
 
     @AfterEach
@@ -41,12 +41,12 @@ public class SuperHeroesServiceImplTest {
 
     @Test
     void findByIdSuperHeroesTest() {
-        SuperHeroes superHeroes1 = new SuperHeroes();
+        Superhero superHeroes1 = new Superhero();
         superHeroes1.setIdSuper(1);
 
         when(superHeroesRepository.findById(1)).thenReturn(Optional.of(superHeroes1));
 
-        Optional<SuperHeroes> result = superHeroesService.findByIdSuperHeroes(1);
+        Optional<Superhero> result = superHeroesService.findByIdSuperhero(1);
         assertEquals(superHeroes1, result.get());
 
         verify(superHeroesRepository, times(1)).findById(1);
@@ -54,11 +54,11 @@ public class SuperHeroesServiceImplTest {
 
     @Test
     void findAllSuperHeroesTest() {
-        SuperHeroes superHeroes1 = new SuperHeroes();
-        SuperHeroes superHeroes2 = new SuperHeroes();
-        List<SuperHeroes> superHeroesList = Arrays.asList(superHeroes1, superHeroes2);
+        Superhero superHeroes1 = new Superhero();
+        Superhero superHeroes2 = new Superhero();
+        List<Superhero> superHeroesList = Arrays.asList(superHeroes1, superHeroes2);
         when(superHeroesRepository.findAll()).thenReturn(superHeroesList);
-        List<SuperHeroes> result = superHeroesService.findAllSuperHeroes();
+        List<Superhero> result = superHeroesService.findAllSuperheroes();
         assertEquals(superHeroesList, result);
 
         verify(superHeroesRepository, times(1)).findAll();
@@ -66,28 +66,28 @@ public class SuperHeroesServiceImplTest {
 
     @Test
     void createSuperHeroesTest() {
-        SuperHeroes superHeroes1 = new SuperHeroes();
+        Superhero superHeroes1 = new Superhero();
         superHeroes1.setIdSuper(1);
         superHeroes1.setName("batman");
 
-        when(superHeroesRepository.save(any(SuperHeroes.class))).thenReturn(superHeroes1);
-        SuperHeroes result = superHeroesService.createSuperHeroes(superHeroes1);
+        when(superHeroesRepository.save(any(Superhero.class))).thenReturn(superHeroes1);
+        Superhero result = superHeroesService.createSuperhero(superHeroes1);
         assertEquals(superHeroes1, result);
 
-        verify(superHeroesRepository, times(1)).save(any(SuperHeroes.class));
+        verify(superHeroesRepository, times(1)).save(any(Superhero.class));
     }
     @Test
     void updateSuperHeroesTest(){
-        SuperHeroes superHeroes1 = new SuperHeroes();
+        Superhero superHeroes1 = new Superhero();
         superHeroes1.setIdSuper(1);
         superHeroes1.setName("Batman");
 
-        when(superHeroesRepository.save(any(SuperHeroes.class))).thenReturn(superHeroes1);
+        when(superHeroesRepository.save(any(Superhero.class))).thenReturn(superHeroes1);
 
-        SuperHeroes result = superHeroesService.updateSuperHeroes(superHeroes1);
+        Superhero result = superHeroesService.updateSuperhero(superHeroes1);
 
         assertEquals(superHeroes1, result);
 
-        verify(superHeroesRepository, times(1)).save(any(SuperHeroes.class));
+        verify(superHeroesRepository, times(1)).save(any(Superhero.class));
     }
 }

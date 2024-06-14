@@ -32,7 +32,7 @@ public class SuperHeroeControlador {
 
     @PutMapping("/{idSuper}")
     public Superhero updateSuperhero(@PathVariable int idSuper, @RequestBody Superhero superhero) {
-        superhero.setId(idSuper);
+        superhero.setIdSuper(idSuper);
         return superheroService.updateSuperhero(superhero);
     }
 

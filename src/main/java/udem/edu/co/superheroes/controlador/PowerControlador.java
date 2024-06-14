@@ -32,7 +32,7 @@ public class PowerControlador {
 
     @PutMapping("/{idPower}")
     public Power updatePower(@PathVariable int idPower, @RequestBody Power power) {
-        power.setId(idPower);
+        power.setIdPower(idPower);
         return powerService.updatePower(power);
     }
 
