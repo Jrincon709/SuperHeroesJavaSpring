@@ -2,6 +2,7 @@ package udem.edu.co.superheroes.controlador;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import udem.edu.co.superheroes.entities.Power;
 import udem.edu.co.superheroes.entities.Superhero;
 import udem.edu.co.superheroes.service.SuperHeroesService;
 
@@ -39,5 +40,15 @@ public class SuperHeroeControlador {
     @DeleteMapping("/{idSuper}")
     public void deleteSuperhero(@PathVariable int idSuper) {
         superheroService.deleteSuperhero(idSuper);
+    }
+
+    @GetMapping("/count-powers")
+    public List<Object[]> countPowersBySuperhero() {
+        return superheroService.countPowersBySuperhero();
+    }
+
+    @GetMapping("/{superheroId}/powers")
+    public List<Power> findPowersBySuperheroId(@PathVariable int superheroId) {
+        return superheroService.findPowersBySuperheroId(superheroId);
     }
 }

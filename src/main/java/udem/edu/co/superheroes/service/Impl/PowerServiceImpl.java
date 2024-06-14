@@ -39,4 +39,9 @@ public class PowerServiceImpl implements PowerService {
     public void deletePower(int id) {
         powerRepository.deleteById(id);
     }
+
+    @Override
+    public List<Object[]> findSuperheroesByPowerId(int powerId) {
+        return powerRepository.findSuperheroesByPowerId(powerId);
+    }
 }

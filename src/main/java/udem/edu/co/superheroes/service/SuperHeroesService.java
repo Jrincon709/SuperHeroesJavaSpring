@@ -1,5 +1,6 @@
 package udem.edu.co.superheroes.service;
 
+import udem.edu.co.superheroes.entities.Power;
 import udem.edu.co.superheroes.entities.Superhero;
 
 import java.util.List;
@@ -11,4 +12,7 @@ public interface SuperHeroesService {
     Superhero createSuperhero(Superhero superhero);
     Superhero updateSuperhero(Superhero superhero);
     void deleteSuperhero(int id);
+
+    List<Power> findPowersBySuperheroId(int superheroId);
+    List<Object[]> countPowersBySuperhero();
 }

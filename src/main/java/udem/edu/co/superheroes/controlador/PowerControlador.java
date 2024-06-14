@@ -40,4 +40,9 @@ public class PowerControlador {
     public void deletePower(@PathVariable int idPower) {
         powerService.deletePower(idPower);
     }
+
+    @GetMapping("/{powerId}/superheroes")
+    public List<Object[]> findSuperheroesByPowerId(@PathVariable int powerId) {
+        return powerService.findSuperheroesByPowerId(powerId);
+    }
 }

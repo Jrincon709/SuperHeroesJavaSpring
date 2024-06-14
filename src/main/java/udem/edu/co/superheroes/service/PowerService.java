@@ -11,4 +11,5 @@ public interface PowerService {
     Power createPower(Power power);
     Power updatePower(Power power);
     void deletePower(int id);
+    List<Object[]> findSuperheroesByPowerId(int id);
 }
