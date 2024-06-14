@@ -6,11 +6,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface PowerService {
-    public List<Power> findAllPower();
-    public Optional<Power> findByIdPower(int idPower);
-
-
-    public Power createPower(Power power);
-    public Power updatePower(Power power);
-    public Power deletePower(int idPower);
+    List<Power> findAllPowers();
+    Optional<Power> findByIdPower(int id);
+    Power createPower(Power power);
+    Power updatePower(Power power);
+    void deletePower(int id);
 }
