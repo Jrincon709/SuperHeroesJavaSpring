@@ -1,5 +1,6 @@
 package udem.edu.co.superheroes.controlador;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import udem.edu.co.superheroes.entities.Power;
 import udem.edu.co.superheroes.service.PowerService;
@@ -8,40 +9,35 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "/api/v2")
+@RequestMapping("/api/v1/powers")
 public class PowerControlador {
-    PowerService powerService;
 
-    public PowerControlador(PowerService powerService) {
-        this.powerService = powerService;
+    @Autowired
+    private PowerService powerService;
+
+    @GetMapping
+    public List<Power> findAllPowers() {
+        return powerService.findAllPowers();
     }
 
-    @GetMapping("/power")
-    public List<Power> findAllPower() {
-        return this.powerService.findAllPower();
+    @GetMapping("/{idPower}")
+    public Optional<Power> findPowerById(@PathVariable int idPower) {
+        return powerService.findByIdPower(idPower);
     }
-
-    @GetMapping("/power/{idPower}")
-    public Optional<Power> findByIdPower(@RequestParam("idPower") int idPower) {
-        return this.powerService.findByIdPower(idPower);
-    }
-
 
     @PostMapping
-    public Power createPower(@RequestBody() Power user) {
-        return this.powerService.createPower(user);
+    public Power createPower(@RequestBody Power power) {
+        return powerService.createPower(power);
     }
 
-    @PutMapping("/power/{idPower}")
-    public Power updatePower(@PathVariable("idPower") int idPower, @RequestBody Power power ){
-        power.setIdPower(idPower);
-        return this.powerService.updatePower(power);
+    @PutMapping("/{idPower}")
+    public Power updatePower(@PathVariable int idPower, @RequestBody Power power) {
+        power.setId(idPower);
+        return powerService.updatePower(power);
     }
 
-    @DeleteMapping("/power/{idPower}")
-    public Power deletePower(@PathVariable("idPower") int idPower) {
-        return this.powerService.deletePower(idPower);
+    @DeleteMapping("/{idPower}")
+    public void deletePower(@PathVariable int idPower) {
+        powerService.deletePower(idPower);
     }
 }
-
-

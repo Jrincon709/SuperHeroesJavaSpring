@@ -11,23 +11,27 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "POWER")
-public class Power {
+@Table(name = "SUPERHERO")
+public class Superhero {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idPower;
+    private int idSuper;
     private String name;
+    private String nickName;
+    private int age;
     private String description;
+    private String suitColor;
+    private String photoSuper;
 
-    @OneToMany(mappedBy = "power", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "superhero", cascade = CascadeType.ALL)
     private List<SuperheroPower> superheroPowers;
 
     public int getId() {
-        return idPower;
+        return idSuper;
     }
 
     public void setId(int id) {
-        this.idPower = id;
+        this.idSuper = id;
     }
 
     public String getName() {
@@ -38,12 +42,44 @@ public class Power {
         this.name = name;
     }
 
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getSuitColor() {
+        return suitColor;
+    }
+
+    public void setSuitColor(String suitColor) {
+        this.suitColor = suitColor;
+    }
+
+    public String getPhotoSuper() {
+        return photoSuper;
+    }
+
+    public void setPhotoSuper(String photoSuper) {
+        this.photoSuper = photoSuper;
     }
 
     public List<SuperheroPower> getSuperheroPowers() {

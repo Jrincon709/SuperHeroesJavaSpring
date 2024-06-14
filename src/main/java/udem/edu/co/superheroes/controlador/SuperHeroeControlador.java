@@ -1,40 +1,43 @@
 package udem.edu.co.superheroes.controlador;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import udem.edu.co.superheroes.entities.SuperHeroes;
+import udem.edu.co.superheroes.entities.Superhero;
 import udem.edu.co.superheroes.service.SuperHeroesService;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "/api/v1")
+@RequestMapping("/api/v1/superheroes")
 public class SuperHeroeControlador {
-    SuperHeroesService superHeroesService;
-    public SuperHeroeControlador(SuperHeroesService superHeroesService){this.superHeroesService = superHeroesService;}
 
-    @GetMapping("/superheroes")
-    public List<SuperHeroes> findAllSuperHeroes() {
-        return this.superHeroesService.findAllSuperHeroes();
+    @Autowired
+    private SuperHeroesService superheroService;
+
+    @GetMapping
+    public List<Superhero> findAllSuperheroes() {
+        return superheroService.findAllSuperheroes();
     }
 
-    @GetMapping("/superheroes/{idSuper}")
-    public Optional<SuperHeroes> findSuperHeroesById(@RequestParam("idSuper") int idSuper) {
-        return this.superHeroesService.findByIdSuperHeroes(idSuper);
+    @GetMapping("/{idSuper}")
+    public Optional<Superhero> findSuperheroById(@PathVariable int idSuper) {
+        return superheroService.findByIdSuperhero(idSuper);
     }
+
     @PostMapping
-    public SuperHeroes createSuperHeroes(@RequestBody() SuperHeroes superheroes) {
-        return this.superHeroesService.createSuperHeroes(superheroes);
-    }
-    @PutMapping("/superheroes/{idSuper}")
-    public SuperHeroes updateSuperHeroes(@PathVariable("idSuper") int idSuper, @RequestBody SuperHeroes  superheroes){
-        superheroes.setIdSuper(idSuper);
-        return this.superHeroesService.updateSuperHeroes(superheroes);
+    public Superhero createSuperhero(@RequestBody Superhero superhero) {
+        return superheroService.createSuperhero(superhero);
     }
 
-    @DeleteMapping("/superheroes/{idSuper}")
-    public SuperHeroes deleteSuperHeroes(@PathVariable("idSuper") int idSuper) {
-        return this.superHeroesService.deleteSuperHeroes(idSuper);
+    @PutMapping("/{idSuper}")
+    public Superhero updateSuperhero(@PathVariable int idSuper, @RequestBody Superhero superhero) {
+        superhero.setId(idSuper);
+        return superheroService.updateSuperhero(superhero);
     }
 
+    @DeleteMapping("/{idSuper}")
+    public void deleteSuperhero(@PathVariable int idSuper) {
+        superheroService.deleteSuperhero(idSuper);
+    }
 }
